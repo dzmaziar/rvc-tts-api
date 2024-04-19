@@ -1,0 +1,18 @@
+build:
+  python_version: "3.10.11"
+
+  gpu: true
+
+  python_requirements: requirements.txt
+
+  system_packages:
+    - "ffmpeg"
+  
+  run: 
+    - pip install --upgrade pip
+    - curl -L -O https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt
+    - curl -L -O https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/rmvpe.pt
+    - pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+    - pip install -r requirements.txt
+  
+predict: "predict.py:Predictor"
